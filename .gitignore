@@ -4,7 +4,7 @@
 *.ini
 *.DS_Store
 *app.log
-
+Makefile
 
 CMakeFiles
 CMakeFiles/app.dir/lib/main.c.o

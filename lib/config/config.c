@@ -20,6 +20,12 @@ const char* BOT_AVATAR_URL = "https://res.monzim.com/others/avatar/_791550a1-faa
 
 const char* BOT_NAME = "Weather Bot";
 
+// FILE
+const char* APP_FOLDER = "app_folder";
+const char* APP_LOGS_DIR = "app_folder/logs";
+const char* APP_CACHE_DIR = "app_folder/cache";
+const char* APP_SETTINGS_DIR = "app_folder/settings";
+
 // File paths
 const char* APP_CONFIG_FILE = "app_folder/settings/config.ini";
 const char* APP_ENV_FILE = "app_folder/settings/.env";

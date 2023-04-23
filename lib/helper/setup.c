@@ -1,6 +1,7 @@
 #include "setup.h"
 
 #include <stdio.h>
+#include <sys/stat.h>
 #include <unistd.h>
 
 #include "../config/config.h"
@@ -55,8 +56,23 @@ void checkIfFirstTimeRunning() {
   }
 }
 
+// void createDirectoryIfNotExists(char *dir) {
+//   if (access(dir, F_OK) != -1) {
+//     addLog("Directory %s exists.", dir);
+//   } else {
+//     addLog("Directory %s does not exist. Creating...", dir);
+//     mkdir(dir, 0777);
+//   }
+// }
+
 void initialSetup() {
   addLog("");
+
+  // create three directories
+  // createDirectoryIfNotExists("app_folder");
+  // createDirectoryIfNotExists("app_folder/logs");
+  // createDirectoryIfNotExists("app_folder/cache");
+  // createDirectoryIfNotExists("app_folder/settings");
 
   loadEncryptionKeyFromEnv();
 

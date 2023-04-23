@@ -8,6 +8,23 @@ This console application provides weather information for your location using th
 
 Additionally, you need to set up a Discord webhook to receive weather data in your Discord server. You can get one for free at **[https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)**.
 
+## Installation
+
+1. Clone the repository to your local machine.
+2. Install Cmake and make sure it is added to your PATH.
+3. Build the project using Cmake.
+
+```bash
+git clone https://github.com/monzim/WeatherConsole.git
+cd WeatherConsole/build
+cmake ..
+make
+
+# Run the application
+cd ..
+./WeatherConsole
+```
+
 ## **Getting Started**
 
 1. Enter your Weather API key when prompted for **`WEATHER_API_KEY`**. This key will be saved in the **`config.ini`** file for future use.

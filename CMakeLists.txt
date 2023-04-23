@@ -19,10 +19,10 @@ include_directories(${CURL_INCLUDE_DIRS})
 include_directories(${JSON-C_INCLUDE_DIRS})
 
 # Add your source files to the executable
-add_executable(app lib/main.c lib/config/config.c lib/helper/url_gen.c lib/helper/json_parser.c lib/helper/print_helper.c lib/helper/fetch_write_callback.c lib/helper/file_writer.c lib/api/api_fetch_current.c lib/helper/color_print.c lib/api/discord.c lib/helper/encrypt.c lib/helper/setup.c lib/helper/log.c lib/helper/promt.c)
+add_executable(WeatherConsole lib/main.c lib/config/config.c lib/helper/url_gen.c lib/helper/json_parser.c lib/helper/print_helper.c lib/helper/fetch_write_callback.c lib/helper/file_writer.c lib/api/api_fetch_current.c lib/helper/color_print.c lib/api/discord.c lib/helper/encrypt.c lib/helper/setup.c lib/helper/log.c lib/helper/promt.c)
 
 # Link against libcurl and json-c libraries
-target_link_libraries(app ${CURL_LIBRARIES} json-c::json-c sodium)
+target_link_libraries(WeatherConsole ${CURL_LIBRARIES} json-c::json-c sodium)
 
 # Set the output directory for the executable
-set_target_properties(app PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/")
+set_target_properties(WeatherConsole PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/")

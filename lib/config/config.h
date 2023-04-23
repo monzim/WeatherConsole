@@ -13,6 +13,12 @@ extern char* DISCORD_WEBHOOK;
 extern const char* BOT_AVATAR_URL;
 extern const char* BOT_NAME;
 
+// FILE
+extern const char* APP_FOLDER;
+extern const char* APP_LOGS_DIR;
+extern const char* APP_CACHE_DIR;
+extern const char* APP_SETTINGS_DIR;
+
 // File paths
 extern const char* APP_CONFIG_FILE;
 extern const char* APP_ENV_FILE;
