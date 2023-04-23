@@ -63,6 +63,6 @@ Make sure to obtain the necessary API key and webhook URL before using the appli
 
 ## **License**
 
-This application is released under the **[MIT License]()**.
+This application is released under the **[MIT License](LICENSE)**.
 
 Enjoy using the Weather Bot App! If you encounter any issues or have any questions, please refer to the **[FAQs](https://monzim.com/contact)** or contact the developer.
