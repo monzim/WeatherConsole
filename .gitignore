@@ -1,0 +1,15 @@
+# .gitignore
+*.env
+*.log
+*.ini
+*.DS_Store
+*app.log
+
+
+CMakeFiles
+CMakeFiles/app.dir/lib/main.c.o
+cmake-build-debug
+
+
+CMakeCache.txt
+cmake_install.cmake
