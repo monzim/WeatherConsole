@@ -4,12 +4,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "../config/config.h"
 #include "../helper/color_print.h"
 #include "../helper/log.h"
 
 const char *ENCRYPTION_KEY = "";
+
+char *generateRandomString() {
+  srand(time(0));
+  char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  int charsetLength = sizeof(charset) - 1;
+  char *randomString = (char *)malloc(33 * sizeof(char));
+
+  for (int i = 0; i < 32; i++) {
+    int index = rand() % charsetLength;
+    randomString[i] = charset[index];
+  }
+
+  randomString[32] = '\0';
+
+  return randomString;
+}
 
 void systemAESEncriptDecripter(char *text, bool isEncrypt) {
   // text memory address
@@ -71,8 +88,9 @@ void loadEncryptionKeyFromEnv() {
     addLog("loadEncryptionKeyFromEnv: .env file not found");
 
     FILE *envFile = fopen(APP_ENV_FILE, "w");
-    // add default content ENCRYPTION_KEY=
-    fprintf(envFile, "ENCRYPTION_KEY=11111111111111111111111111111111");
+    char *randomString = generateRandomString();
+
+    fprintf(envFile, "ENCRYPTION_KEY=%s", randomString);
 
     fclose(envFile);
     loadEncryptionKeyFromEnv();
