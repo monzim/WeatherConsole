@@ -52,8 +52,8 @@ WeatherData fetchCurrentWeatherWithLocation(const char *location, const char *fi
       printRed("Curl error: %s\n", curl_easy_strerror(response));
       printRed("Location: %s\n", location);
 
-      // return weatherData;
-      exit(EXIT_FAILURE);
+      // exit(EXIT_FAILURE);
+      return weatherData;
     }
 
     long http_code = 0;
@@ -69,7 +69,8 @@ WeatherData fetchCurrentWeatherWithLocation(const char *location, const char *fi
       printYellow(
           "Maybe you have wrong location or you have exceeded the limit of free API calls. Or invalid API key.\n");
       printGray("____________________________________________________________\n");
-      exit(EXIT_FAILURE);
+      // exit(EXIT_FAILURE);
+      return weatherData;
     }
 
     json_object *json = json_tokener_parse(buffer);
@@ -82,6 +83,23 @@ WeatherData fetchCurrentWeatherWithLocation(const char *location, const char *fi
 
     weatherData.location = weatherLocation;
     weatherData.current = current;
+
+    // char *filename = weatherLocation.localtime;
+    // for (int i = 0; i < strlen(filename); i++) {
+    //   if (filename[i] == ' ') filename[i] = '-';
+    // }
+
+    // strcat(filename, ".json");
+
+    // char *filename = weatherLocation.localtime;
+    // for (int i = 0; i < strlen(filename); i++) {
+    //   if (filename[i] == ' ') filename[i] = '-';
+    // }
+
+    // strcat(filename, ".json");
+
+    // char file_path[100];
+    // sprintf(file_path, "%s/%s", APP_CACHE_DIR, filename);
 
     if (saveToFile) writeBufferToFile(filename, buffer, strlen(buffer), false);
     if (print) printWeatherData(&weatherData);

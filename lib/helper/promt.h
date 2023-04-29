@@ -15,4 +15,6 @@ void askChangeAPIKey();
 
 void askChangeDiscordWebhook();
 
+void askSeeLastResponse();
+
 #endif  // PROMPT_H

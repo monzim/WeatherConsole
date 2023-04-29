@@ -33,6 +33,9 @@ int main() {
     printf("4. ");
     printCyan("Change API Key\n");
 
+    printf("5. ");
+    printCyan("See last Response\n");
+
     // printf("4. ");
     // printCyan("Change Discord Webhook\n");
 
@@ -64,6 +67,10 @@ int main() {
 
       case '4':
         askChangeAPIKey();
+        break;
+
+      case '5':
+        askSeeLastResponse();
         break;
 
         // case '4':

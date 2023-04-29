@@ -9,10 +9,15 @@
 #include "../config/config.h"
 #include "../helper/color_print.h"
 #include "../helper/encrypt.h"
+#include "../helper/fetch_write_callback.h"
 #include "../helper/file_writer.h"
+#include "../helper/json_parser.h"
 #include "../helper/log.h"
+#include "../helper/print_helper.h"
 #include "../helper/setup.h"
+#include "../helper/url_gen.h"
 #include "../models/models.h"
+#include "/Users/monzim/Developer/vcpkg/packages/json-c_arm64-osx/include/json-c/json.h"
 
 void printColorYesNo() {
   printBoldWhite("(");
@@ -33,6 +38,12 @@ void askGetCurrentWeather() {
   scanf("%s", location);
 
   WeatherData data = fetchCurrentWeatherWithLocation(location, RESPONSE_FILE, true, true);
+
+  // check if data is empty
+  if (strlen(data.location.localtime) < 2) {
+    printAborting();
+    return;
+  }
 
   char send_message;
   printf("• Do you want to send message to discord? ");
@@ -126,6 +137,9 @@ void askResetConfig() {
     if (confirm2 == 'Y' || confirm2 == 'y') {
       resetConfig();
     }
+  } else {
+    printf("    ");
+    printAborting();
   }
 }
 
@@ -246,4 +260,55 @@ void askChangeDiscordWebhook() {
   if (confirm == 'Y' || confirm == 'y') {
     // TODO: Implement this
   }
+}
+
+void askSeeLastResponse() {
+  printf("\n");
+  printMagenta("Last response in JSON format\n");
+
+  FILE *file = fopen(RESPONSE_FILE, "r");
+
+  if (file == NULL) {
+    printRed("Error opening response file.\n");
+    addLog("Error opening response file.");
+    return;
+  }
+
+  char buffer[2024];
+
+  char line[256];
+  printGray("\n____________________________________________________\n\n");
+  while (fgets(line, sizeof(line), file) != NULL) {
+    // printf("%s", line);
+    strcat(buffer, line);
+  }
+
+  printBoldWhite("%s", buffer);
+
+  char confirm;
+  printLightMagenta("\n\n\n  • Do you want to see the formatted response? ");
+  printColorYesNo();
+  scanf(" %c", &confirm);
+
+  if (confirm == 'Y' || confirm == 'y') {
+    printGray("\n_________________________LAST_RESPONSE___________________________\n\n");
+
+    json_object *json = json_tokener_parse(buffer);
+    Location weatherLocation;
+    Current current;
+
+    parseLocation(json_object_object_get(json, "location"), &weatherLocation);
+    parseCurrent(json_object_object_get(json, "current"), &current);
+
+    weatherData.location = weatherLocation;
+    weatherData.current = current;
+
+    printWeatherData(&weatherData);
+  }
+
+  printGray("\n____________________________________________________\n\n");
+
+  fclose(file);
+
+  addLog("Last response was seen.");
 }
