@@ -7,6 +7,10 @@
 
 #include "../helper/log.h"
 
+/*
+  Ref: https://gist.github.com/alan-mushi/19546a0e2c6bd4e059fd
+*/
+
 // Function implementations
 void parseLocation(json_object *json, Location *location) {
   addLog("Parsing location from json, json: %p, location: %p", json, location);

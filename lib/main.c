@@ -73,10 +73,6 @@ int main() {
         askSeeLastResponse();
         break;
 
-        // case '4':
-        //   askChangeDiscordWebhook();
-        //   break;
-
       case '7':
         askClearLogs();
         break;
